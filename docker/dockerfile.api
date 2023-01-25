@@ -1,0 +1,12 @@
+# Build api
+FROM node:19.4.0
+WORKDIR /usr/app-api
+
+COPY ./ /usr/app-api
+
+RUN npm install
+RUN npm run build
+
+EXPOSE 4000
+
+CMD ["npm", "run", "start"]

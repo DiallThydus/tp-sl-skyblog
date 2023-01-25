@@ -1,0 +1,13 @@
+# Build front
+FROM node:19.4.0
+WORKDIR /usr/app-front
+
+copy ./front /usr/app-front
+
+RUN npm install
+RUN npm run build
+RUN npm instal -g serve
+
+EXPOSE 3000
+
+CMD ["serve", "-s", "build"]
