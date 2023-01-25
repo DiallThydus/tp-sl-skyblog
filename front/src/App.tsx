@@ -2,9 +2,10 @@ import "./App.css";
 
 function App() {
 	return (
-		<div className="App">
-			<h1>Skyblog</h1>
-		</div>
+		<>
+			<h1>liste des posts</h1>
+			<p>détails</p>
+		</>
 	);
 }
 
