@@ -7,7 +7,11 @@ services:
     image: postgres
     restart: always
     environment:
+      POSTGRES_USER: myDB
+      POSTGRES_DB: skyblog
       POSTGRES_PASSWORD: root
+    ports:
+      - 5432:5432
 
   adminer:
     image: adminer
