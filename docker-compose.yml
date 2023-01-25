@@ -5,13 +5,18 @@ volumes:
 		driver: local
 
 services:
-	skyblog-db:
-		image: postgres:15.1
-		restart: always
-		volumes:
-			- postgres_data:/var/lib/postgresql/data
-		environment:
-			POSTGRES_PASSWORD: root
+
+  db:
+    image: postgres:15.1
+    restart: always
+	volumes:
+		- postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: myDB
+      POSTGRES_DB: skyblog
+      POSTGRES_PASSWORD: root
+    ports:
+      - 5432:5432
 
 	adminer:
 		image: adminer
