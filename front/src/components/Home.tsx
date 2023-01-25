@@ -1,8 +1,8 @@
 export default function Home() {
 	return (
-		<>
-			<h1>la liste des postes</h1>
+		<div className="page-home">
+			<h1>Bienvenue</h1>
 			<p>details</p>
-		</>
+		</div>
 	);
 }
