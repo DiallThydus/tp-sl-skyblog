@@ -11,6 +11,8 @@ services:
 		volumes:
 			- postgres_data:/var/lib/postgresql/data
 		environment:
+			POSTGRES_USER: myDB
+			POSTGRES_DB: skyblog
 			POSTGRES_PASSWORD: root
 
 	adminer:
