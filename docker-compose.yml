@@ -1,16 +1,29 @@
-# Use postgres/example user/password credentials
-version: '3.1'
+version: '3.8'
+
+volumes:
+	postgres_data:
+		driver: local
 
 services:
+	skyblog-db:
+		image: postgres:15.1
+		restart: always
+		volumes:
+			- postgres_data:/var/lib/postgresql/data
+		environment:
+			POSTGRES_PASSWORD: root
 
-  db:
-    image: postgres
-    restart: always
-    environment:
-      POSTGRES_PASSWORD: root
+	adminer:
+		image: adminer
+		restart: always
+		ports:
+			- 127.0.0.1:8080:8080
 
-  adminer:
-    image: adminer
-    restart: always
-    ports:
-      - 8080:8080
+	skyblog-front:
+		image: skyblog
+		restart: always
+		environment:
+			DATABASE_URL: "postgresql://postgress:root@localhost:5432/Skyblog?schema=public"
+		ports:
+			- 3000:3000
+			- 4000:4000
