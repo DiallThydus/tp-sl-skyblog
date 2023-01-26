@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import Breadcrumb from "../Breadcrumb/Breadcrumb";
 
 import "./navbar.css";
 
 export default function Navbar() {
   return (
     <nav className="navbar">
-      <ul>
+      <ul className="nav-items">
         <li className="item">
           <Link to="/">Home</Link>
         </li>
@@ -19,6 +20,7 @@ export default function Navbar() {
           <Link to="/signin">Login</Link>
         </li>
       </ul>
+      <Breadcrumb />
     </nav>
   );
 }

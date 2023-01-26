@@ -4,6 +4,9 @@ volumes:
   postgres_data:
     driver: local
 
+networks:
+  skyblog-net:
+
 services:
   skyblog-db:
     image: postgres:15.1
@@ -14,23 +17,29 @@ services:
       POSTGRES_USER: myDB
       POSTGRES_DB: skyblog
       POSTGRES_PASSWORD: root
+    networks:
+      - skyblog-net
 
   adminer:
     image: adminer
     restart: always
     ports:
       - 8080:8080
+    networks:
+      - skyblog-net
 
-  skyblog-api:
-    image: skyblog-api
-    restart: always
-    environment:
-      DATABASE_URL: "postgresql://postgress:root@localhost:5432/Skyblog?schema=public"
-    ports:
-      - 4000:4000
+  # skyblog-api:
+  #   image: skyblog-api
+  #   restart: always
+  #   environment:
+  #     DATABASE_URL: "postgresql://postgress:root@localhost:5432/Skyblog?schema=public"
+  #   ports:
+  #     - 4000:4000
+  #   networks:
+  #     - skyblog-net
 
-  skyblog-front:
-    image: skyblog-front
-    restart: always
-    ports:
-      - 3000:3000
+  # skyblog-front:
+  #   image: skyblog-front
+  #   restart: always
+  #   ports:
+  #     - 3000:3000
