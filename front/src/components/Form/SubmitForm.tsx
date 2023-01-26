@@ -1,14 +1,18 @@
 interface SubmitFormProps {
-	label?: string;
-	type?: "submit" | "reset" | "button";
+  label?: string;
+  type?: "submit" | "reset" | "button";
+  loading?: boolean;
 }
 export default function SubmitForm({
-	label = "Envoyer",
-	type = "button",
+  label = "Send",
+  type = "submit",
+  loading = false,
 }: SubmitFormProps) {
-	return (
-		<div className="form-field">
-			<button type={type}>{label}</button>
-		</div>
-	);
+  return (
+    <div className="form-field">
+      <button type={type} disabled={loading}>
+        {label}
+      </button>
+    </div>
+  );
 }
