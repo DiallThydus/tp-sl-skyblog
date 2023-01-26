@@ -13,20 +13,21 @@ datasource db {
 model Post {
   id            String    @id @unique @default(uuid())
   title         String
-  body          Json
+  body          String @db.Text
   comment       Comment[]
   author        User      @relation(fields: [authorId], references: [id])
   authorId      String
   creation_date DateTime  @default(now())
+  update_date DateTime? 
 }
 
 model Comment {
-  id          String @id @unique @default(uuid())
+  id String @id @unique @default(uuid())
   description String
-  postId      String
-  post        Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
-  author      User   @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId    String
+  postId String
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  author     User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId   String
 }
 
 model User {

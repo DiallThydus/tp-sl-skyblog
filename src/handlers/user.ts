@@ -83,7 +83,7 @@ export const signInUser: RequestHandler = async (
         email: user.email,
       },
       data: {
-        token,
+        token
       },
     });
     res.cookie("userToken", token);
