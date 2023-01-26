@@ -19,6 +19,8 @@ services:
       POSTGRES_PASSWORD: root
     networks:
       - skyblog-net
+    ports: # à retirer pour ne pas exposer la db
+      - 5432:5432
 
   adminer:
     image: adminer
@@ -41,5 +43,7 @@ services:
   # skyblog-front:
   #   image: skyblog-front
   #   restart: always
+  #   networks:
+  #     - skyblog-net
   #   ports:
   #     - 3000:3000
