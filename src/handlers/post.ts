@@ -1,4 +1,4 @@
-import { Request, RequestHandler, response, Response } from "express";
+import { Request, Response } from "express";
 import { validationResult } from "express-validator";
 import {
   GetOrDeletePost,
@@ -19,7 +19,7 @@ export const getAllPosts = async (req: Request, res: Response) => {
       ],
     });
 
-    return res.status(200).json({ allPosts });
+    return res.status(200).json({ posts: allPosts });
   } catch (e: any) {
     return res.status(400).json({ error: e.message });
   }
@@ -38,7 +38,7 @@ export const getPost = async (req: GetOrDeletePost, res: Response) => {
       },
     });
 
-    return res.status(200).json({ getPost });
+    return res.status(200).json({ post: getPost });
   } catch (e: any) {
     return res.status(400).json({ error: e.message });
   }
@@ -48,7 +48,8 @@ export const getPostByCreationDate = async (
   req: GetPostByCreationDate,
   res: Response
 ) => {
-  const params = req.params;
+  const query = req.query
+  const date = query.date
 };
 
 export const createNewPost = async (req: CreatePost, res: Response) => {
@@ -67,7 +68,7 @@ export const createNewPost = async (req: CreatePost, res: Response) => {
       },
     });
 
-    return res.status(200).json({ newPost });
+    return res.status(200).json({ post: newPost });
   } catch (e: any) {
     return res.status(400).json({ error: e.message });
   }
@@ -106,7 +107,7 @@ export const editPost = async (req: EditPost, res: Response) => {
       },
     });
 
-    return res.status(200).json({ updatedPost });
+    return res.status(200).json({ post: updatedPost });
   } catch (e: any) {
     return res.status(400).json({ error: e.message });
   }
