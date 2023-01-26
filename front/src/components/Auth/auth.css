@@ -1,18 +1,18 @@
 form.form-auth {
-	height: auto;
-	width: 350px;
-	display: flex;
-	gap: 1.5em;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+  height: auto;
+  width: 350px;
+  display: flex;
+  gap: 1.5em;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 form.form-auth .form-field {
-	height: auto;
-	width: 100%;
-	display: flex;
-	gap: 0.5em;
-	justify-content: center;
-	flex-direction: column;
+  height: auto;
+  width: 100%;
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+  flex-direction: column;
 }

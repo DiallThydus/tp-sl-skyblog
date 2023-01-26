@@ -1,83 +1,89 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 
 * {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	box-sizing: border-box;
-	outline-color: #1c5b90;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  outline-color: #1c5b90;
+  text-decoration: none;
+  color: #333;
 }
 
 html,
 body {
-	height: 100%;
-	width: 100%;
-	font-family: "Roboto", sans-serif;
-	color: #333;
-	background-color: #e8e8e8;
-	display: flex;
-	align-items: center;
-	flex-direction: column;
+  height: 100%;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  background-color: #e8e8e8;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 #root {
-	position: relative;
-	height: auto;
-	width: 1280px;
-	flex: 1;
+  position: relative;
+  height: auto;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
 }
 
 .app {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
+  width: 800px;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 ul,
 li {
-	list-style: none;
+  list-style: none;
 }
 
-a {
-	color: #3f88c5;
-	text-decoration: none;
-	border-bottom: 1px solid transparent;
+a:not(.reset) {
+  color: #3f88c5;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
 }
-a:hover {
-	border-bottom: 1px solid #3f88c5;
+a:not(.reset):hover {
+  border-bottom: 1px solid #3f88c5;
 }
 
 input,
 textarea,
 button {
-	background-color: transparent;
-	padding: 1em 2em;
-	border: 1px solid #dadce0;
-	border-radius: 3px;
-	transition: 0.15s;
+  background-color: transparent;
+  padding: 1em 2em;
+  border: 1px solid #dadce0;
+  border-radius: 3px;
+  transition: 0.15s;
 }
 input:hover,
 textarea:hover,
 button:hover {
-	background-color: #dadce0;
+  background-color: #dadce0;
 }
 
 button {
-	cursor: pointer;
-	color: #e8e8e8;
-	background-color: #3f88c5;
-	border: 1px solid #3f88c5;
-	border-radius: 3px;
-	transition: 0.15s;
+  cursor: pointer;
+  color: #e8e8e8;
+  background-color: #3f88c5;
+  border: 1px solid #3f88c5;
+  border-radius: 3px;
+  transition: 0.15s;
 }
 button:hover {
-	background-color: #1c5b90;
-	border: 1px solid #1c5b90;
+  background-color: #1c5b90;
+  border: 1px solid #1c5b90;
 }
 
-@media screen and (max-width: 1280px) {
-	#root {
-		width: 100%;
-	}
+@media screen and (max-width: 800px) {
+  .app {
+    width: 100%;
+  }
 }
