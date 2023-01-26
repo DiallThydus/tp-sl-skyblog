@@ -1,18 +1,26 @@
 import express from "express";
-import { signUpUser, signInUser} from  "../handlers/user"
-import { body } from 'express-validator';
+import { signUpUser, signInUser } from "../handlers/user";
+import { body } from "express-validator";
 
-const app = express.Router()
+const app = express.Router();
 
-app.post('/signin',
-body('password').isString().isLength({min: 8}),
-body('email').isEmail(),
-signInUser)
+app.get("/", (req, res) => {
+  res.send({ hello: "world" });
+});
 
-app.post('/signup',
- body('username').isString().isLength({min: 5, max: 64}),
- body('password').isString().isLength({min: 8}),
- body('email').isEmail(),
- signUpUser)
+app.post(
+  "/signin",
+  body("email").isEmail(),
+  body("password").isString().isLength({ min: 8 }),
+  signInUser
+);
 
-export default app
+app.post(
+  "/signup",
+  body("email").isEmail(),
+  body("username").isString().isLength({ min: 5, max: 64 }),
+  body("password").isString().isLength({ min: 8 }),
+  signUpUser
+);
+
+export default app;
