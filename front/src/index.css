@@ -1,19 +1,119 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 
 * {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  outline-color: #1c5b90;
+  text-decoration: none;
+  color: #333;
 }
 
+html,
 body {
-	font-family: "Roboto", sans-serif;
-	color: #333;
-	background-color: #e8e8e8;
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
-		"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
-		"Helvetica Neue", sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+  height: 100%;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  background-color: #e8e8e8;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#root {
+  position: relative;
+  height: auto;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  flex-direction: column;
+}
+
+.app {
+  width: 800px;
+  padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+a:not(.reset),
+.link {
+  cursor: pointer;
+  font-size: 1em;
+  color: #3f88c5;
+  background-color: transparent;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+a:not(.reset):hover,
+.link:hover {
+  border-bottom: 1px solid;
+}
+
+form {
+  height: auto;
+  max-width: 100%;
+  width: 450px;
+  display: flex;
+  gap: 1.5em;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+form .form-field {
+  height: auto;
+  width: 100%;
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+  flex-direction: column;
+}
+
+form .form-field > textarea:no(.reset) {
+  resize: vertical;
+  /* transition: resize 0s; */
+}
+
+input:not(.reset),
+textarea:not(.reset),
+button:not(.reset):not(.Toastify__close-button) {
+  background-color: transparent;
+  padding: 1em 2em;
+  border: 1px solid #dadce0;
+  border-radius: 3px;
+  transition: all 0.15s, height 0s;
+}
+input:not(.reset):hover,
+textarea:not(.reset):hover,
+button:not(.reset):not(.Toastify__close-button):hover {
+  background-color: #dadce0;
+}
+
+button:not(.reset):not(.Toastify__close-button) {
+  cursor: pointer;
+  color: #e8e8e8;
+  background-color: #3f88c5;
+  border: 1px solid #3f88c5;
+  border-radius: 3px;
+  transition: 0.15s;
+}
+button:not(.reset):not(.Toastify__close-button):hover {
+  background-color: #1c5b90;
+  border: 1px solid #1c5b90;
+}
+
+@media screen and (max-width: 800px) {
+  .app {
+    width: 100%;
+  }
 }

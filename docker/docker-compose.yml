@@ -1,0 +1,49 @@
+version: "3.8"
+
+volumes:
+  postgres_data:
+    driver: local
+
+networks:
+  skyblog-net:
+
+services:
+  skyblog-db:
+    image: postgres:15.1
+    restart: always
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: myDB
+      POSTGRES_DB: skyblog
+      POSTGRES_PASSWORD: root
+    networks:
+      - skyblog-net
+    ports: # à retirer pour ne pas exposer la db
+      - 5432:5432
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - skyblog-net
+
+  # skyblog-api:
+  #   image: skyblog-api
+  #   restart: always
+  #   environment:
+  #     DATABASE_URL: "postgresql://postgress:root@localhost:5432/Skyblog?schema=public"
+  #   ports:
+  #     - 4000:4000
+  #   networks:
+  #     - skyblog-net
+
+  # skyblog-front:
+  #   image: skyblog-front
+  #   restart: always
+  #   networks:
+  #     - skyblog-net
+  #   ports:
+  #     - 3000:3000
