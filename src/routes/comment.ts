@@ -16,6 +16,7 @@ app.get("/", getAllComments);
 app.post(
   "/create",
   body("description").isString().notEmpty(),
+  body("postId").isString().notEmpty(),
   createNewComment
 );
 
@@ -23,6 +24,7 @@ app.post(
 app.put(
   "/edit/:commentId",
   body("description").isString().notEmpty(),
+  body("postId").isString().notEmpty(),
   editComment
 );
 

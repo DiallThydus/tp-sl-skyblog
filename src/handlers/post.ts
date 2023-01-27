@@ -116,7 +116,8 @@ export const editPost = async (req: EditPost, res: Response) => {
 
 export const deletePost = async (req: GetOrDeletePost, res: Response) => {
   const params = req.params;
-
+  const role = req.user.role
+  
   try {
     const post = await db.post.findFirstOrThrow({
       where: {
@@ -124,7 +125,7 @@ export const deletePost = async (req: GetOrDeletePost, res: Response) => {
       },
     });
 
-    if (post.authorId !== req.user.id) {
+    if (role === "USER" && post.authorId !== req.user.id) {
       throw new Error("Access denied: you're not the author");
     }
 
