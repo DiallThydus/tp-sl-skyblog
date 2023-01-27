@@ -12,8 +12,8 @@ dotenv.config();
 
 const PORT = process.env.PORT || 4000;
 const corsOptions = {
-  origin: "*",
-  optionsSuccessStatus: 200,
+  origin: (_, callback) => callback(null, true),
+  credentials: true,
 } as CorsOptions;
 
 const app = express();
