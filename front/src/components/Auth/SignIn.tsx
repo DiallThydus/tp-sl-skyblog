@@ -58,7 +58,7 @@ export default function SignIn() {
     } catch (error: any) {
       const errorMessage = getErrorMessage(error);
 
-      console.log(errorMessage);
+      console.error(errorMessage);
       toast.error(errorMessage);
     } finally {
       setLoading(false);

@@ -7,7 +7,6 @@ export default function ProtectedRoute({
   children: JSX.Element;
 }) {
   const { data: user, isLoading } = useUser();
-
   if (isLoading) {
     return (
       <div className="loader">

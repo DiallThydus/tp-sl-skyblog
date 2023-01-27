@@ -68,7 +68,8 @@ export default function SignUp() {
       setTimeout(() => navigate("/signin"), 3000);
     } catch (error: any) {
       const errorMessage = getErrorMessage(error);
-      console.log(errorMessage);
+
+      console.error(errorMessage);
       toast.error(errorMessage);
     } finally {
       setLoading(false);
