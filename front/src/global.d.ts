@@ -20,7 +20,10 @@ interface Post {
 interface Comment {
   id: string;
   description: string;
-  author: Author;
+  postId: string;
+  post?: Post;
+  authorId: string;
+  author?: Author;
   createdAt: Date;
   updatedAt: Date;
 }

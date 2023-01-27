@@ -1,12 +1,14 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
+import FormComment from "./FormComment";
+import PostComment from "./PostComment";
+
 import usePost from "../../hooks/usePost";
 import useUser from "../../hooks/useUser";
 import formatDate from "../../utils/formatDate";
 import getErrorMessage from "../../utils/getErrorMessage";
 import MakeRequest from "../../utils/request";
-import FormComment from "./FormComment";
 
 import "./post.css";
 
@@ -110,37 +112,5 @@ export default function Post() {
       </ul>
       <FormComment postId={postId!} />
     </div>
-  );
-}
-
-function PostComment({ comment }: { comment: Comment }) {
-  const { data: user } = useUser();
-  const { description, author, createdAt, updatedAt } = comment;
-  const createdDateFormated = formatDate(createdAt);
-  const updatedDateFormated = formatDate(updatedAt);
-
-  return (
-    <li className="comment">
-      <h4 className="comment-author">
-        {author.username} {user?.email === author.email && "(you)"}
-      </h4>
-      <div className="comment-description">{description}</div>
-      <div className="comment-details">
-        {createdDateFormated === updatedDateFormated ? (
-          <>
-            Commented/edited <span className="date">{createdDateFormated}</span>
-          </>
-        ) : (
-          <>
-            Commented <span className="date">{createdDateFormated}</span>{" "}
-            {updatedAt && (
-              <>
-                edited <span className="date">{updatedDateFormated}</span>
-              </>
-            )}
-          </>
-        )}
-      </div>
-    </li>
   );
 }

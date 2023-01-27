@@ -21,14 +21,9 @@ app.post(
 );
 
 // editComment
-app.put(
-  "/edit/:commentId",
-  body("description").isString().notEmpty(),
-  body("postId").isString().notEmpty(),
-  editComment
-);
+app.put("/:commentId", body("description").isString().notEmpty(), editComment);
 
 // deleteComment
-app.delete("/delete/:commentId", deleteComment);
+app.delete("/:commentId", deleteComment);
 
 export default app;
