@@ -15,7 +15,7 @@ model Post {
   title     String
   body      String    @db.Text
   comment   Comment[]
-  author    User      @relation(fields: [authorId], references: [id])
+  author    User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId  String
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt

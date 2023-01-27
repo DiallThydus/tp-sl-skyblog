@@ -16,6 +16,8 @@ import PostEdit from "./components/Post/Edit/PostEdit";
 import Post from "./components/Post/Post";
 import Posts from "./components/Posts/Posts";
 
+import Users from "./components/Users/Users";
+
 import ProtectedRoute from "./components/ProtectedRoute";
 import RestrictedRoute from "./components/RestrictedRoute";
 
@@ -70,6 +72,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <PostEdit />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute admin>
+                <Users />
               </ProtectedRoute>
             }
           />

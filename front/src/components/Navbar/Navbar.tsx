@@ -45,11 +45,18 @@ export default function Navbar() {
           <Link to="/posts">Posts</Link>
         </li>
         {user ? (
-          <li className="item">
-            <button className="reset link" onClick={handleLogout}>
-              Logout
-            </button>
-          </li>
+          <>
+            {user.role === "ADMIN" && (
+              <li className="item">
+                <Link to="/users">Users</Link>
+              </li>
+            )}
+            <li className="item">
+              <button className="reset link" onClick={handleLogout}>
+                Logout
+              </button>
+            </li>
+          </>
         ) : (
           <>
             <li className="item">
