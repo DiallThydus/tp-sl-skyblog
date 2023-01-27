@@ -4,7 +4,7 @@ export interface CreateComment extends Request {
   body: {
     description: string;
     authorId: string;
-    postId: string
+    postId: string;
   };
 }
 
@@ -18,7 +18,7 @@ export interface EditComment extends Request {
 }
 
 export interface DeleteComment extends Request {
-    params: {
-      commentId: string;
-    };
-  }
+  params: {
+    commentId: string;
+  };
+}

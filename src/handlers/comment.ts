@@ -67,7 +67,7 @@ export const editComment = async (req: EditComment, res: Response) => {
 
     const updatedComment = await db.comment.update({
       data: {
-        description: body.description
+        description: body.description,
       },
       where: {
         id: comment.id,
