@@ -35,6 +35,32 @@ export const protect: RequestHandler = async (req, res, next) => {
   }
 };
 
+export const isAdmin: RequestHandler = async (req, res, next) => {
+  const cookie = req.cookies;
+  const token = cookie?.userToken;
+
+  if (!token) {
+    return res.status(401).json({ message: "Not authorized" });
+  }
+
+  try {
+    const user = await db.user.findFirstOrThrow({
+      where: {
+        token: token,
+      },
+    });
+  
+    if (user.role === "USER") {
+      throw new Error("Access Denied")
+    }
+
+    return next();
+  } catch(e: any){
+    res.status(401).json({error: e.message})
+  }
+  
+}
+
 export const comparePassword = (password: string, hash: string) => {
   return bcrypt.compare(password, hash);
 };
