@@ -6,6 +6,7 @@ nav.navbar {
 
 nav.navbar ul.nav-items {
   display: flex;
+  gap: 0.25em;
   align-items: center;
   justify-content: space-between;
 }

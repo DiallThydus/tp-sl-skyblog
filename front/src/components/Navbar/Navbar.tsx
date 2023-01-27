@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Breadcrumb from "../Breadcrumb/Breadcrumb";
-import useUser from "../hooks/useUser";
+import useUser from "../../hooks/useUser";
 
 import "./navbar.css";
 

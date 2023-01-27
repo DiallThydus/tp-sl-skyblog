@@ -19,7 +19,7 @@ export default function Breadcrumb() {
       ) : (
         items.map((item, index) => (
           <li className="breadcrumb-item" key={index}>
-            {index !== 0 && index !== items.length - 1 ? "》" : ""}
+            {index !== 0 ? "》" : ""}
             {capitalizeFirstLetter(item)}
           </li>
         ))

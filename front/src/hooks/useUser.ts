@@ -1,14 +1,12 @@
 import { useQuery } from "react-query";
+import MakeRequest from "../utils/request";
 
 export default function useUser() {
-  return useQuery(
+  return useQuery<User>(
     "user",
     () =>
-      fetch(`${process.env.REACT_APP_API_URL}/user`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        credentials: "include",
+      MakeRequest({
+        path: "user",
       })
         .then((res) => res.json())
         .then((data) => data?.user),

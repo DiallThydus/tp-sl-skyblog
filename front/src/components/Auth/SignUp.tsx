@@ -7,6 +7,7 @@ import SubmitForm from "../Form/SubmitForm";
 
 import getErrorMessage from "../../utils/getErrorMessage";
 
+import MakeRequest from "../../utils/request";
 import "./auth.css";
 
 export default function SignUp() {
@@ -47,16 +48,15 @@ export default function SignUp() {
         throw new Error("Passwords does not matchs");
       }
 
-      const request = await fetch(
-        `${process.env.REACT_APP_API_URL}/user/signup`,
-        {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ username, email, password }),
-        }
-      );
+      const request = await MakeRequest({
+        path: "user/signup",
+        method: "post",
+        body: {
+          username,
+          email,
+          password,
+        },
+      });
 
       const data = await request.json();
       if (!request.ok) {
@@ -65,7 +65,7 @@ export default function SignUp() {
       }
 
       toast.success(data?.message || "Account created");
-      setTimeout(() => navigate("/signin"), 3000);
+      navigate("/signin");
     } catch (error: any) {
       const errorMessage = getErrorMessage(error);
 

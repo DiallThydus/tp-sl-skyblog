@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import formatDate from "../../utils/formatDate";
-import usePosts from "../hooks/usePosts";
+import usePosts from "../../hooks/usePosts";
 
 import "./posts.css";
 
@@ -18,6 +18,9 @@ export default function Posts() {
   return (
     <div className="page-posts">
       <h2>Posts</h2>
+      <p style={{ width: "100%", textAlign: "right" }}>
+        <Link to="/post/create">Create post</Link>
+      </p>
       <ul className="posts">
         {data?.posts ? (
           data?.posts?.map((post) => <PostSummary key={post.id} post={post} />)
