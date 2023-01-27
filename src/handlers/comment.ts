@@ -82,7 +82,7 @@ export const editComment = async (req: EditComment, res: Response) => {
 
 export const deleteComment = async (req: DeleteComment, res: Response) => {
   const params = req.params;
-
+  const role = req.user.role
   try {
     const comment = await db.comment.findFirstOrThrow({
       where: {
@@ -90,7 +90,7 @@ export const deleteComment = async (req: DeleteComment, res: Response) => {
       },
     });
 
-    if (comment.authorId !== req.user.id) {
+    if (role === "USER" && comment.authorId !== req.user.id) {
       throw new Error("Access denied: you're not the author");
     }
 
@@ -99,7 +99,7 @@ export const deleteComment = async (req: DeleteComment, res: Response) => {
         id: comment.id,
       },
     });
-    return res.status(200).json({ message: "Post deleted with success" });
+    return res.status(200).json({ message: "Comment deleted with success" });
   } catch (e: any) {
     return res.status(400).json({ error: e.message });
   }
