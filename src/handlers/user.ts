@@ -104,7 +104,8 @@ export const signInUser: RequestHandler = async (
   }
 };
 
-function getSafeUserData(user: User) {
+
+export function getSafeUserData(user: User) {
   const { id, password, ...userSafeData } = user;
   return userSafeData;
 }

@@ -8,7 +8,7 @@ export interface GetOrDeletePost extends Request {
 
 export interface GetPostByCreationDate extends Request {
   params: {
-    timestamp: string;
+    date: string;
   };
 }
 
