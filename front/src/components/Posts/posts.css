@@ -1,4 +1,5 @@
 .page-posts {
+  width: 100%;
   padding-bottom: 2em;
   display: flex;
   gap: 1.5em;
@@ -7,6 +8,7 @@
 }
 
 .posts {
+  width: 100%;
   display: flex;
   gap: 4em;
   align-items: center;

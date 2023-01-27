@@ -21,13 +21,12 @@ export const protect: RequestHandler = async (req, res, next) => {
     return res.status(401).json({ message: "Not authorized" });
   }
 
-  const user = await db.user.findFirstOrThrow({
-    where: {
-      token: token,
-    },
-  });
-
   try {
+    const user = await db.user.findFirstOrThrow({
+      where: {
+        token: token,
+      },
+    });
     req.user = user;
 
     return next();

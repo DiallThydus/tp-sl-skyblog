@@ -30,13 +30,13 @@ app.post(
 
 // editPost
 app.put(
-  "/edit/:postId",
+  "/:postId",
   body("title").isString().notEmpty(),
   body("body").isString().notEmpty(),
   editPost
 );
 
 // deletePost
-app.delete("/delete/:postId", deletePost);
+app.delete("/:postId", deletePost);
 
 export default app;

@@ -51,9 +51,12 @@ export default function Post() {
   }
 
   const { title, body, author, comment, createdAt, updatedAt } = post;
+  const createdDateFormated = formatDate(createdAt);
+  const updatedDateFormated = formatDate(updatedAt);
+
   return (
     <div className="page-post">
-      {author.email === user!.email && (
+      {(user!.role === "ADMIN" || author.email === user!.email) && (
         <p
           style={{
             width: "100%",
@@ -64,28 +67,34 @@ export default function Post() {
           }}
         >
           <Link to={`/post/${postId}/edit`}>Edit</Link>
-          {user!.role === "ADMIN" && (
-            <button
-              className="reset link"
-              type="button"
-              onClick={handleDeletePost}
-              style={{
-                color: "red",
-              }}
-            >
-              Delete
-            </button>
-          )}
+          <button
+            className="reset link"
+            type="button"
+            onClick={handleDeletePost}
+            style={{
+              color: "red",
+            }}
+          >
+            Delete
+          </button>
         </p>
       )}
       <h2 className="post-title">{title}</h2>
       <p className="post-body">{body}</p>
       <div className="post-author">
-        By <div className="username">{author.username}</div> on
-        <div className="date">{formatDate(createdAt)}</div>
-        {updatedAt && (
+        <div className="username">{author.username}, </div>
+        {createdDateFormated === updatedDateFormated ? (
           <>
-            edited <div className="date">{formatDate(updatedAt)}</div>
+            Posted/edited <span className="date">{createdDateFormated}</span>
+          </>
+        ) : (
+          <>
+            Posted <span className="date">{createdDateFormated}</span>{" "}
+            {updatedAt && (
+              <>
+                edited <span className="date">{updatedDateFormated}</span>
+              </>
+            )}
           </>
         )}
       </div>
@@ -105,16 +114,30 @@ export default function Post() {
 }
 
 function PostComment({ comment }: { comment: Comment }) {
+  const { data: user } = useUser();
   const { description, author, createdAt, updatedAt } = comment;
+  const createdDateFormated = formatDate(createdAt);
+  const updatedDateFormated = formatDate(updatedAt);
+
   return (
     <li className="comment">
-      <h4 className="comment-author">{author.username}</h4>
+      <h4 className="comment-author">
+        {author.username} {user?.email === author.email && "(you)"}
+      </h4>
       <div className="comment-description">{description}</div>
       <div className="comment-details">
-        Commented <span className="date">{formatDate(createdAt)}</span>{" "}
-        {updatedAt && (
+        {createdDateFormated === updatedDateFormated ? (
           <>
-            edited <span className="date">{formatDate(updatedAt)}</span>
+            Commented/edited <span className="date">{createdDateFormated}</span>
+          </>
+        ) : (
+          <>
+            Commented <span className="date">{createdDateFormated}</span>{" "}
+            {updatedAt && (
+              <>
+                edited <span className="date">{updatedDateFormated}</span>
+              </>
+            )}
           </>
         )}
       </div>

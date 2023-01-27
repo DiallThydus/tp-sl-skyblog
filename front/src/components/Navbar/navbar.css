@@ -6,12 +6,13 @@ nav.navbar {
 
 nav.navbar ul.nav-items {
   display: flex;
-  gap: 0.25em;
+  gap: 0.5em;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 }
 
-nav.navbar ul.nav-items li.item a {
+nav.navbar ul.nav-items li.item a,
+nav.navbar ul.nav-items li.item button {
   min-width: 150px;
   text-align: center;
   padding: 1em 2em;
@@ -20,7 +21,8 @@ nav.navbar ul.nav-items li.item a {
   display: block;
   transition: 0.15s ease-in;
 }
-nav.navbar ul.nav-items li.item a:hover {
+nav.navbar ul.nav-items li.item a:hover,
+nav.navbar ul.nav-items li.item button:hover {
   border: 1px solid #dadce0;
   background-color: #dadce0;
   box-shadow: 0 0 10px 2px #dadce0;
