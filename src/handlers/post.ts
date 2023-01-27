@@ -16,6 +16,9 @@ export const getAllPosts = async (req: Request, res: Response) => {
           createdAt: "desc",
         },
       ],
+      include: {
+        author: true
+      }
     });
 
     res.status(200).json({ posts });
@@ -33,7 +36,12 @@ export const getPost = async (req: GetOrDeletePost, res: Response) => {
         id: params.postId,
       },
       include: {
-        comment: true,
+        comment: {
+          include: {
+            author: true
+          }
+        },
+        author: true
       },
     });
 

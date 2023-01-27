@@ -2,6 +2,7 @@ import { User } from "@prisma/client";
 import * as bcrypt from "bcrypt";
 import { RequestHandler } from "express";
 import jwt from "jsonwebtoken";
+import db from "../db";
 
 export const createJWT = (user: User) => {
   const token = jwt.sign(
@@ -12,7 +13,7 @@ export const createJWT = (user: User) => {
   return token;
 };
 
-export const protect: RequestHandler = (req, res, next) => {
+export const protect: RequestHandler = async (req, res, next) => {
   const cookie = req.cookies;
   const token = cookie?.userToken;
 
@@ -20,12 +21,15 @@ export const protect: RequestHandler = (req, res, next) => {
     return res.status(401).json({ message: "Not authorized" });
   }
 
+  const user = await db.user.findFirstOrThrow({
+    where: {
+      token: token,
+    },
+  });
+
   try {
-    if (typeof process.env.JWT_SECRET !== "string") {
-      return res.status(401).json({ message: "Not authorized" });
-    }
-    const payload = jwt.verify(token, process.env.JWT_SECRET) as User;
-    req.user = payload;
+    req.user = user;
+
     return next();
   } catch (e) {
     return res.status(401).json({ message: "Not authorized" });

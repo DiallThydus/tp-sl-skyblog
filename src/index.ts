@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 
 import userRoutes from "./routes/user";
 import postRoutes from "./routes/post";
+import commentRoutes from "./routes/comment";
 
 import { protect } from "./utils/auth";
 
@@ -24,5 +25,6 @@ app.use(express.json());
 
 app.use("/user", [userRoutes]);
 app.use("/posts", protect, [postRoutes]);
+app.use("/comments", protect, [commentRoutes]);
 
 app.listen(PORT, () => console.log("Server started as :" + PORT));

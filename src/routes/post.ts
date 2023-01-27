@@ -18,7 +18,7 @@ app.get("/", getAllPosts);
 app.get("/:postId", getPost);
 
 // getPostByCreationDate
-app.get("/:timestamp", getPostByCreationDate);
+app.get("/post?date=:timestamp", getPostByCreationDate);
 
 // createPost
 app.post(

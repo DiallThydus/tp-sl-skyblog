@@ -1,11 +1,22 @@
 import express from "express";
-import { signUpUser, signInUser } from "../handlers/user";
+import { signUpUser, signInUser, getSafeUserData,  } from "../handlers/user";
 import { body } from "express-validator";
+import { protect } from "../utils/auth";
+import { SafeUser } from "../types/express";
 
 const app = express.Router();
 
-app.get("/", (req, res) => {
-  res.send({ hello: "world" });
+app.get("/", protect, (req, res) => {
+  const user: SafeUser|null = getSafeUserData(req.user)
+  try {
+    if (! (user)) {
+      throw new Error("No user found")
+    }
+
+    return res.status(200).json({user})
+  } catch (e: any) {
+    res.status(400).json({error: e.message})
+  }
 });
 
 app.post(
