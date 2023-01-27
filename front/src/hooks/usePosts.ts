@@ -1,12 +1,10 @@
 import { useQuery } from "react-query";
+import MakeRequest from "../utils/request";
 
 export default function usePosts() {
   return useQuery<{ posts: Post[] }>("posts", () =>
-    fetch(`${process.env.REACT_APP_API_URL}/posts`, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
+    MakeRequest({
+      path: "posts",
     }).then((res) => res.json())
   );
 }

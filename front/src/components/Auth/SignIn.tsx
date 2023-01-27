@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { queryClient } from "../../lib/queryCient";
 import getErrorMessage from "../../utils/getErrorMessage";
+import MakeRequest from "../../utils/request";
 
 import FormField from "../Form/FormField";
 import SubmitForm from "../Form/SubmitForm";
@@ -31,20 +32,14 @@ export default function SignIn() {
         throw new Error("Missing password");
       }
 
-      const request = await fetch(
-        `${process.env.REACT_APP_API_URL}/user/signin`,
-        {
-          method: "post",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include",
-          body: JSON.stringify({
-            email,
-            password,
-          }),
-        }
-      );
+      const request = await MakeRequest({
+        path: "user/signin",
+        method: "post",
+        body: {
+          email,
+          password,
+        },
+      });
 
       const data = await request.json();
       if (!request.ok) {

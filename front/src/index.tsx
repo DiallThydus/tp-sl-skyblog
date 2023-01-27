@@ -3,14 +3,19 @@ import { QueryClientProvider, useQuery } from "react-query";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
+import Layout from "./components/Layout/Layout";
+import Navbar from "./components/Navbar/Navbar";
+
 import SignIn from "./components/Auth/SignIn";
 import SignUp from "./components/Auth/SignUp";
 import Home from "./components/Home";
-import Layout from "./components/Layout/Layout";
-import Navbar from "./components/Navbar/Navbar";
 import PageNotFound from "./components/PageNotFound";
+
+import PostCreate from "./components/Post/Create/PostCreate";
+import PostEdit from "./components/Post/Edit/PostEdit";
 import Post from "./components/Post/Post";
 import Posts from "./components/Posts/Posts";
+
 import ProtectedRoute from "./components/ProtectedRoute";
 import RestrictedRoute from "./components/RestrictedRoute";
 
@@ -45,10 +50,26 @@ function App() {
             }
           />
           <Route
+            path="/post/create"
+            element={
+              <ProtectedRoute>
+                <PostCreate />
+              </ProtectedRoute>
+            }
+          />
+          <Route
             path="/post/:postId"
             element={
               <ProtectedRoute>
                 <Post />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/post/:postId/edit"
+            element={
+              <ProtectedRoute>
+                <PostEdit />
               </ProtectedRoute>
             }
           />
@@ -71,7 +92,7 @@ function App() {
           <Route path="/*" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
-      <ToastContainer />
+      <ToastContainer toastClassName={"toast-item"} />
     </Layout>
   );
 }
