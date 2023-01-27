@@ -1,6 +1,7 @@
 import { FormEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { queryClient } from "../../lib/queryCient";
 import getErrorMessage from "../../utils/getErrorMessage";
 
 import FormField from "../Form/FormField";
@@ -37,6 +38,7 @@ export default function SignIn() {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
           body: JSON.stringify({
             email,
             password,
@@ -50,10 +52,9 @@ export default function SignIn() {
         throw new Error(errorMessage);
       }
 
+      queryClient.invalidateQueries("user");
       toast.success(data?.message || "Account created");
-      console.log("user", data?.user);
-
-      setTimeout(() => navigate("/"), 3000);
+      navigate("/");
     } catch (error: any) {
       const errorMessage = getErrorMessage(error);
 
