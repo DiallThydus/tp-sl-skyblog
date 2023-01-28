@@ -98,6 +98,10 @@ One line start
 
 > (GET) Déconnecte l'utilisateur après avoir supprimé son token en BDD et dans le cookie
 
+### `/user/switchRole`
+
+> (GET) Permet au prof de changer de role pour tester notre super skyblog :)
+
 ### Routes Posts
 
 ### `/posts/`

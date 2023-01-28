@@ -1,5 +1,5 @@
 import express from "express";
-import { signUpUser, signInUser, getSafeUserData } from "../handlers/user";
+import { signUpUser, signInUser, getSafeUserData, switchUserRole } from "../handlers/user";
 import { body } from "express-validator";
 import { protect } from "../utils/auth";
 import { SafeUser } from "../types/express";
@@ -51,5 +51,7 @@ app.post(
   body("password").isString().isLength({ min: 8 }),
   signUpUser
 );
+
+app.get("/switchRole", protect, switchUserRole)
 
 export default app;
