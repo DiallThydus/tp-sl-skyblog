@@ -10,6 +10,7 @@ networks:
 
 services:
   skyblog-db:
+    container_name: Skyblog-DB
     image: postgres:15.1
     restart: always
     volumes:
@@ -22,6 +23,7 @@ services:
       - skyblog_net
 
   adminer:
+    container_name: Skyblog-Adminer
     image: adminer
     restart: always
     ports:
@@ -33,6 +35,7 @@ services:
         condition: service_started
 
   skyblog-api-setup:
+    container_name: Skyblog-Front-Setup
     image: skyblog-api
     command: npx prisma db push && npx prisma generate
     restart: "no"
@@ -45,6 +48,7 @@ services:
         condition: service_started
 
   skyblog-api:
+    container_name: Skyblog-API
     image: skyblog-api
     restart: always
     environment:
@@ -59,6 +63,7 @@ services:
         condition: service_started
 
   skyblog-front:
+    container_name: Skyblog-Front
     image: skyblog-front
     restart: always
     ports:

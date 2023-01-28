@@ -4,6 +4,9 @@ WORKDIR /usr/app-front
 
 COPY ./front /usr/app-front
 
+# Pas trouvé comment déclarer la variable d'environnement ailleurs -> à changer si possible
+ARG REACT_APP_API_URL="http://localhost:4000"
+
 RUN npm install
 RUN npm run build
 RUN npm install -g serve
