@@ -1,4 +1,4 @@
-import { RequestHandler } from "express";
+import { Request, RequestHandler, RequestParamHandler, Response } from "express";
 import { validationResult } from "express-validator";
 
 import db from "../db";
@@ -107,4 +107,32 @@ export const signInUser: RequestHandler = async (
 export function getSafeUserData(user: User) {
   const { id, password, ...userSafeData } = user;
   return userSafeData;
+}
+
+export const switchUserRole = async (req: Request, res: Response) => {
+  const user = req.user.id
+  const role = req.user.role
+
+  if (role === "USER") {
+    await db.user.update({
+      data: {
+        role: "ADMIN"
+      },
+      where: {
+        id: user
+      }
+    })
+
+    return res.status(200).json({message: "Role set as admin"})
+  } else if (role === "ADMIN")
+  await db.user.update({
+    data: {
+      role: "USER"
+    },
+    where: {
+      id: user
+    }
+  })
+
+  return res.status(200).json({message: "Role set as user"})
 }
